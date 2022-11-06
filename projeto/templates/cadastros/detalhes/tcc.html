@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>TCC - {{ tcc.titulo }}</title>
+{% endblock %}
+{% block conteudo %}
+    <div class="page-header text-center py-3">
+        <h1>{{ tcc.titulo }}</h1>
+        <hr>
+    </div>
+    <div class="row">
+        <iframe id="iframe_pdf" src="{{ tcc.arquivo.url }}"
+      style="width:800px; height:800px;" frameborder="0"></iframe>
+        <div class="col-sm-8">
+            <p class="h4"><strong>Curso: </strong>{{ tcc.curso }}</p>
+            <p class="h4"><strong>Autor(es): </strong>{{ autor.nome }}</p>
+            <p class="h4"><strong>Ano de Publicação: </strong>{{ tcc.ano_doc }}</p>
+            <p class="h4"><strong>Orientadores: </strong>{{ tcc.orientador }}</p>
+            <p class="h4"><strong>Resumo: </strong></p>
+            <p class="h5">{{ tcc.resumo }}</p>
+            <p class="h4"><strong>Palavras-chave</strong>{{ tcc.palavras_chave }}</p>
+            <p class="h4"><strong>TCC em PDF:</strong> <a href="{{ tcc.arquivo.url }}">Abrir</a></p>
+        </div>
+    </div>
+{% endblock %}

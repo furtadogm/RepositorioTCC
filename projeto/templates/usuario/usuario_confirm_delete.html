@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block head %}
+    <title> Deletar Usuário- Repositório de TCCs</title>
+{% endblock %}
+{% block conteudo %}
+<div class="col-5 mx-auto">
+    <div align="center">
+        <h2>Deletar Usuário</h2>
+    </div>
+    <hr>
+<form method="post">{% csrf_token %}
+    <p>Deseja deletar esse usuário "{{ object }}"?</p>
+    {{ form }}
+    <input type="submit" value="Confirmar">
+</form>
+{% endblock %}

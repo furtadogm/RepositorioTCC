@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+    {% include 'partils/_alertas.html' %}
+    <div class="page-header text-center py-3" align="center">
+        <h1>TCCs</h1>
+        <hr>
+    </div>
+    <form action="?" method="GET">
+        <input style ="margin: 10px" type="text" name="nome" id="" value="{{ request.GET.nome }}" class="p-1 border" autocomplete="off" placeholder="Nome ou parte dele">
+        <button type="submit" class="btn btn-success">Buscar</button>
+        <a href="{% url 'index' %}" class="btn btn-light">Limpar</a>
+    </form>
+    <br>
+{% for tcc in queryset %}
+    <div id= "b">
+        <a href = "#"><p>{{ tcc.titulo }}</p></a>
+        <p style = "font-weight: bold"> ANO DE PUBLICAÇÃO: <p>{{ tcc.ano_doc }}</p> </p>
+        <p style = "font-weight: bold">PALAVRAS CHAVE:</p>
+        {% for palavra in tcc.palavra_chave %}
+        <p>{{ palavra }}</p>
+        {% endfor %}
+    </div>
+
+{% endfor %}
+{% endblock %}
