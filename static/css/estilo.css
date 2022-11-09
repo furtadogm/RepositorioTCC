@@ -50,7 +50,7 @@ a:nth-child(5){
 }
 
 a:nth-child(6){
-    width: 140px;
+    width: 120px;
 }
 
 nav .start-home, a:nth-child(1):hover~.animation{
@@ -80,11 +80,13 @@ nav .start-courses, a:nth-child(5):hover~.animation{
     left: 470px;
     background-color: #1abc9c;
 }
+
 nav .start-mytcc, a:nth-child(6):hover~.animation{
-    width: 160px;
-    left: 580px;
+    width: 180px;
+    left: 650px;
     background-color: #1abc9c;
 }
+
 
 body{
     font-size: 12px;

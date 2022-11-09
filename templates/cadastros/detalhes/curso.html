@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-    <title>Autores - Repositório de TCC</title>
+    <title>Cursos - Repositório de TCC</title>
 {% endblock %}
 {% block conteudo %}
     {% include 'partils/_alertas.html' %}
     <div>
-        <h2>Lista de Autores
+        <h2>Lista de Cursos
         {% if request.user.is_authenticated %}
-        <a href="{% url 'criar_autor' %}" class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i> Adicionar Autor</a>
+        <a href="{% url 'criar_curso' %}" class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i> Adicionar Curso</a>
         {% endif %}
         </h2>
         <hr>
@@ -18,33 +18,33 @@
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
-                    <th scope="col">Sobrenome</th>
-                    <th scope="col">Foto</th>
+                    <th scope="col">Modalidade</th>
+
                     {% if request.user.is_authenticated %}
                     <th scope="col">Ações</th>
                     {% endif %}
                 </tr>
             </thead>
             <tbody>
-            {% for autor in object_list %}
+            {% for curso in object_list %}
                 <tr>
-                    <td>{{ autor.primeiro_nome }}</td>
-                    <td>{{ autor.ultimo_nome }}</td>
-                    <td>{{ autor.foto }}</td>
+                    <td>{{ curso.nome }}</td>
+                    <td>{{ curso.modalidade }}</td>
+
 
                     <td>
-                        <a href="{% url 'listar_tcc_autor' autor.pk %}" class="btn btn-primary btn-sm"><i class="bi bi-book"></i> TCCs</a>
+                        <a href="{% url 'listar_tcc_curso' curso.pk %}" class="btn btn-primary btn-sm"><i class="bi bi-book"></i> Cursos</a>
                     </td>
                     {% if request.user.is_authenticated %}
                     <td>
-                        <a href="{% url 'editar_autor' autor.pk %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
-                        <a href="{% url 'deletar_autor' autor.pk %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+                        <a href="{% url 'editar_curso' curso.pk %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                        <a href="{% url 'deletar_curso' curso.pk %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
                     </td>
                     {% endif %}
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5">Nenhum(a) autor(a) registrado(a).</td>
+                    <td colspan="5">Nenhum curso registrado.</td>
                 </tr>
             {% endfor %}
             </tbody>

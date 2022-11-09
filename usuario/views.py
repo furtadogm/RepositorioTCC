@@ -20,33 +20,48 @@ class myUserCreationForm(UserCreationForm):
 
 class UsuarioCreateView(CreateView):
     model = get_user_model()
-    # fields = ["username", "email", "password1", "password2"]
     form_class = myUserCreationForm
     success_message = "Usuário cadastrado com sucesso!"
     success_url = "/"
+    template_name = "cadastros/form.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateView, self).get_context_data(**kwargs)
+        context["titulo"] = "Usuários - Repositório de TCC"
+        context["descricao"] = "Cadastro de Usuário"
+        return context
+
+    def form_valid(self, form):
+        url = super().form_valid(form)
+        return url
 
 
 class UsuarioUpdateView(UpdateView):
     model = get_user_model()
     fields = ["username", "first_name", "last_name"]
     success_message = "Usuário atualizado com sucesso!"
-    template_name = "usuario/usuario_form.html"
     success_url = "/"
+    template_name = "cadastros/form.html"
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateView, self).get_context_data(**kwargs)
+        context["titulo"] = "Usuários - Repositório de TCC"
+        context["descricao"] = "Editar Usuário"
+        context["botao"] = "Salvar"
+        return context
+
+    def form_valid(self, form):
+        url = super().form_valid(form)
+        return url
 
 
 class UsuarioDeleteView(DeleteView):
     model = get_user_model()
     success_url = reverse_lazy("index")
     success_message = "Usuário excluído com sucesso!"
-
-
-# class UsuarioDetailView(LoginRequiredMixin, DetailView):
-#     login_url = reverse_lazy("login")
-#     model = get_user_model()
-#     template_name = "usuario/usuario_detail.html"
-
-#     def get_object(self, queryset=None):
-#         return self.request.user
 
 
 class PasswordChangeView(LoginRequiredMixin, SuccessMessageMixin, PasswordChangeView):

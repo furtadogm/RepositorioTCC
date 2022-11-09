@@ -20,7 +20,7 @@
     </div>
     <div>
     <nav>
-      <a href="#">Inicio</a>
+      <a href="{%url 'index'%}">Inicio</a>
       <a href="{%url 'index'%}">TCCs</a>
       <a href="#">Autores</a>
       <a href="#">Orientadores</a>
@@ -37,6 +37,7 @@
           <a href="#">Meus dados</a>
           <a href="{% url 'password' %}">Alterar senha</a>
           <a href="{% url 'logout' %}">Sair</a>
+          <a href="#">Usuários do sistema</a>
           {% else %}
           <button class="dropbtn" onclick="myFunction()">
           <i class="fa fa-caret-down"></i>CONTA

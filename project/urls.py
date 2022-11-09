@@ -21,8 +21,4 @@ urlpatterns = [
         PasswordChangeView.as_view(template_name="cadastros/mudar-senha.html"),
         name="password",
     ),
-    # path("criar/autor/", AutorCreateView.as_view(), name="criar_autor"),
-    # path("editar/autor/<int:pk>/", AutorUpdateView.as_view(), name="editar_autor"),
-    # path("deletar/autor/<int:pk>/", AutorDeleteView.as_view(), name="deletar_autor"),
-    # path("listar/autores/", AutorListView.as_view(), name="listar_autores"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

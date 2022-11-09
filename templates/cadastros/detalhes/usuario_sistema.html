@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>Usuários do sistema - Repositório de TCC</title>
+{% endblock %}
+{% block conteudo %}
+    {% include 'partils/_alertas.html' %}
+    <div>
+        <h2>Lista de usuários do sistema</h2>
+        <hr>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th scope="col">Username: </th>
+                    <th scope="col">E-mail:</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in object_list %}
+                <tr>
+                    <td>{{ username }}</td>
+                    <td>{{ email}}</td>
+
+
+                    <td>
+                        <a href="{% url 'listar_tcc_user' usuario.pk %}" class="btn btn-primary btn-sm"><i class="bi bi-book"></i> TCCs</a>
+                    </td>
+                    {% if request.user.is_authenticated %}
+                    <td>
+                        <a href="{% url 'editar_user' usuario.pk %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                        <a href="{% url 'deletar_user' usuario.pk %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
