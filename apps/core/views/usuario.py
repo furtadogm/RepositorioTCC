@@ -62,6 +62,7 @@ class UsuarioUpdateView(UpdateView):
 class UsuarioDeleteView(DeleteView):
     model = get_user_model()
     success_url = reverse_lazy("index")
+    template_name = "registration/excluir.html"
     success_message = "Usuário excluído com sucesso!"
 
 
