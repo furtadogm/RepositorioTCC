@@ -65,7 +65,7 @@ nav .start-orientador, a:nth-child(3):hover~.animation{
 }
 nav .start-courses, a:nth-child(4):hover~.animation{
     width: 150px;
-    left: 610px;
+    left: 310px;
     background-color: #1abc9c;
 }
 
