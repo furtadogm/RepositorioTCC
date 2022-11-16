@@ -18,9 +18,14 @@
         {% csrf_token %}
         {{ form|crispy }}
         <br>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'delete' user.pk %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Excluir conta</a>
+        {% endif %}
         <button type="submit" class="btn btn-primary mt-3">
             <i class="bi bi-check-lg"></i>
             {{ botao|default:"Cadastrar" }}
         </button>
+
+
     </form>
 {% endblock %}

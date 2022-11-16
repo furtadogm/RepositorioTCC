@@ -1,6 +1,56 @@
-{% for tcc in queryset %}
-    <p>{{tcc.id}}</p>
-    <p>{{tcc.titulo}}</p>
-    <p>{{tcc.resumo}}</p>
-    <br>
-{% endfor %}
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>TCCs - Repositório de TCC</title>
+{% endblock %}
+{% block conteudo %}
+    {% include 'partils/_alertas.html' %}
+    <div>
+        <h2>Lista de TCCs
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'criar_tccs' %}" class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i> Adicionar TCC</a>
+        {% endif %}
+        </h2>
+        <hr>
+    </div>
+    <div class="table-responsive">
+        <table style = "border-collapse: collapse; border: 1px solid;" class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th style = "border: 1px solid;" scope="col">Título: </th>
+                    <th style = "border: 1px solid;" scope="col">Autor:</th>
+                    <th style = "border: 1px solid;" scope="col">Orientador:</th>
+                    <th style = "border: 1px solid;" scope="col">Ano de publicação:</th>
+                    <th style = "border: 1px solid;" scope="col">Palavras-chave:</th>
+                    <th style = "border: 1px solid;" scope="col">Resumo:</th>
+                    {% if request.user.is_authenticated %}
+                    <th style = "border: 1px solid;" scope="col">Ações</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for tcc in object_list %}
+                <tr>
+                    <td style = "border: 1px solid;" >{{ tcc.titulo }}</td>
+                    <td style = "border: 1px solid;">{{ tcc.autor }}</td>
+                    <td style = "border: 1px solid;">{{ tcc.orientador }}</td>
+                    <td style = "border: 1px solid;">{{ tcc.ano_de_publicacao }}</td>
+                    <td style = "border: 1px solid;">{{ tcc.palavras_chave }}</td>
+                    <td style = "border: 1px solid;">{{ tcc.resumo }}</td>
+
+                    {% if request.user.is_authenticated %}
+                    <td style = "border: 1px solid;">
+                        <a href="{% url 'editar_tccs' tcc.pk %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                        <a href="{% url 'deletar_tccs' tcc.pk %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">Nenhum TCC registrado.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

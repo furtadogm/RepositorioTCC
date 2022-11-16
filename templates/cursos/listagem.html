@@ -14,30 +14,25 @@
         <hr>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped" id="tabela-listar">
+        <table style = "border-collapse: collapse; border: 1px solid;"class="table table-striped" id="tabela-listar">
             <thead>
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Modalidade</th>
+                    <th style = "border: 1px solid;" scope="col">Nome</th>
+                    <th style = "border: 1px solid;" scope="col">Modalidade</th>
 
                     {% if request.user.is_authenticated %}
-                    <th scope="col">Ações</th>
+                    <th style = "border: 1px solid;" scope="col">Ações</th>
                     {% endif %}
                 </tr>
             </thead>
             <tbody>
             {% for curso in object_list %}
                 <tr>
-                    <td>{{ curso.nome }}</td>
-                    <td>{{ curso.modalidade }}</td>
+                    <td style = "border: 1px solid;" >{{ curso.nome }}</td>
+                    <td style = "border: 1px solid;">{{ curso.get_modalidade }}</td>
 
-
-                    <td>
-                        {% comment %} <a href="{% url 'listar_tcc_curso' curso.pk %}" class="btn btn-primary btn-sm"><i class="bi bi-book"></i> Cursos</a> {% endcomment %}
-                        <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-book"></i> Cursos</a>
-                    </td>
                     {% if request.user.is_authenticated %}
-                    <td>
+                    <td style = "border: 1px solid;">
                         <a href="{% url 'editar_cursos' curso.pk %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
                         <a href="{% url 'deletar_cursos' curso.pk %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Excluir</a>
                     </td>

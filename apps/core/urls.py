@@ -46,7 +46,7 @@ urlpatterns = [
     path("delete/<int:pk>/", views.UsuarioDeleteView.as_view(), name="delete"),
     path(
         "password/",
-        views.PasswordChangeView.as_view(template_name="cadastros/mudar-senha.html"),
+        views.PasswordChangeView.as_view(template_name="registration/mudar-senha.html"),
         name="password",
     ),
 ]

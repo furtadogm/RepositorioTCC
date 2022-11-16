@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm, UsernameField
-
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
 from django.contrib.auth import get_user_model
@@ -24,7 +24,7 @@ class UsuarioCreateView(CreateView):
     form_class = myUserCreationForm
     success_message = "Usuário cadastrado com sucesso!"
     success_url = "/"
-    template_name = "cadastros/form.html"
+    template_name = "registration/form.html"
 
     def get_context_data(self, **kwargs):
         context = super(CreateView, self).get_context_data(**kwargs)
@@ -42,7 +42,7 @@ class UsuarioUpdateView(UpdateView):
     fields = ["username", "first_name", "last_name"]
     success_message = "Usuário atualizado com sucesso!"
     success_url = "/"
-    template_name = "cadastros/form.html"
+    template_name = "registration/form.html"
 
     def get_object(self, queryset=None):
         return self.request.user

@@ -19,7 +19,7 @@ def criar_tccs(request):
 
     if request.method == "POST":
 
-        form = TCCForm(request.POST)
+        form = TCCForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>Meus dados - Repositório de TCC</title>
+{% endblock %}
+{% block conteudo %}
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <h2>{{ usuario.primeiro_nome }} {{ usuario.ultimo_nome }}
+                <a href="{% url 'update' %}" class="btn btn-warning float-end"><i class="bi bi-pencil-square"></i> Editar</a>
+                </h2>
+                <hr>
+            </div>
+        </div>
+        {% include 'partils/_alertas.html' %}
+        <div class="table-responsive">
+            <p class="h5">Username: {{ usuario.username }}</p>
+            <p class="h5">E-mail: {{ usuario.email }}</p>
+        </div>
+    </div>
+{% endblock %}

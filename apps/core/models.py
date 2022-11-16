@@ -19,6 +19,9 @@ class Autor(models.Model):
         options={"quality": 60},
     )
 
+    def __str__(self):
+        return self.primeiro_nome
+
 
 class Orientador(models.Model):
     primeiro_nome = models.CharField(max_length=255, verbose_name="Primeiro nome")
@@ -26,6 +29,9 @@ class Orientador(models.Model):
     link_curriculo_lattes = models.URLField(
         max_length=255, verbose_name="Link do currículo lattes"
     )
+
+    def __str__(self):
+        return self.primeiro_nome
 
 
 class Curso(models.Model):
@@ -39,6 +45,10 @@ class Curso(models.Model):
     nome = models.CharField(max_length=255, verbose_name="Nome")
     modalidade = models.IntegerField(choices=MODALIDADE_CHOICES)
 
+    @property
+    def get_modalidade(self):
+        return self.MODALIDADE_CHOICES[self.modalidade][1]
+
 
 class TCC(models.Model):
     titulo = models.CharField(max_length=255, verbose_name="Título")
@@ -50,3 +60,6 @@ class TCC(models.Model):
     resumo = models.TextField(verbose_name="Resumo")
     arquivo = models.FileField(upload_to="tccs", verbose_name="Arquivo")
     palavras_chave = models.JSONField(default=list, verbose_name="Palavras chave")
+
+    def __str__(self):
+        return self.titulo

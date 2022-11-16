@@ -1,5 +1,7 @@
 from django import forms
 
+from django.contrib.admin.widgets import AdminDateWidget
+
 from .models import *
 
 
@@ -23,6 +25,10 @@ class CursoForm(forms.ModelForm):
 
 
 class TCCForm(forms.ModelForm):
+
+    # ano_de_publicacao = forms.DateField(widget=AdminDateWidget())
+
     class Meta:
         model = TCC
         fields = "__all__"
+        widgets = {"ano_de_publicacao": forms.widgets.DateInput(attrs={"type": "date"})}
