@@ -12,7 +12,6 @@ urlpatterns = [
     path("autores/criar/", views.criar_autores, name="criar_autores"),
     path("autores/<int:id>/editar/", views.editar_autores, name="editar_autores"),
     path("autores/<int:id>/deletar/", views.deletar_autores, name="deletar_autores"),
-    # path("autores/tccs/", views.listar_tccs_pelo_autor, name="listar_tcc_autor"),
     # orientadores
     #
     path("orientadores/", views.listar_orientadores, name="listagem_orientadores"),

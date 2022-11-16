@@ -1,8 +1,6 @@
 from django.db import models
-
 from imagekit import models as image_models
 from imagekit import processors as image_proc
-
 from .enums import MODALIDADE
 
 
